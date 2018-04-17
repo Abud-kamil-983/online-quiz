@@ -1,0 +1,63 @@
+<div class="row" ng-controller = "AdminUserController as adminuCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;" ng-init = "adminuCtrl.getUsers()">
+
+      <div ng-show="adminuCtrl.loadingfull" class="animationload">
+        <div class="osahanloading">
+        </div>
+      </div>
+
+      <div class="table-responsive" ng-hide="adminuCtrl.test_details">
+        <p class="h3 white-text text-center mb-4">User details</p>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Full name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Test details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="user in adminuCtrl.users">
+              <th>{{user.fullName}}</th>
+              <th>{{user.email}}</th>
+              <th>{{user.mobile}}</th>
+              <th><a ng-click="adminuCtrl.getUserTest(user._id)"><i class="fa fa-info-circle"></i></a></th>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <button back class="btn btn-outline-danger"> back</button>
+        </div>
+      </div> 
+      
+      <div class="table-responsive" ng-show="adminuCtrl.test_details">
+        <p class="h3 white-text text-center mb-4">User test details</p>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Test title</th>
+              <th>Total questions</th>
+              <th>Total attempt</th>
+              <th>Correct</th>
+              <th>Incorrect</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="test in adminuCtrl.tests">
+              <th>{{test.test.title}}</th>
+              <th>{{test.totalQuestions}}</th>
+              <th>{{test.wrong+test.score}}</th>
+              <th>{{test.score}}</th>
+              <th>{{test.wrong}}</th>
+              <th>{{test.score}}</th>           
+            </tr>
+          </tbody>
+        </table>
+        <button ng-click="adminuCtrl.goBack()" class="btn btn-outline-danger">go back</button>
+      </div>
+    </div>
+  </div>
+</div>

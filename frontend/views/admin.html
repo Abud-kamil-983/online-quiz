@@ -1,0 +1,69 @@
+<div class="row" ng-controller = "AdminController as adminCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;" ng-init = "adminCtrl.getTests()">
+      <h3 class="mb-1 ak-ticket-heading text-center">Welcome Admin!</h3>
+
+      <div ng-show="adminCtrl.loadingfull" class="animationload">
+        <div class="osahanloading">
+        </div>
+      </div>
+
+      <a href="#!/admin/add-test" class="btn btn-secondary"><i class="fa fa-plus mr-1"></i> Create Test</a>
+      <a href="#!/admin/add-question" class="btn btn-warning"><i class="fa fa-plus mr-1"></i> Add Question</a>
+      <a href="#!/admin/users-list" class="btn btn-info"><i class="fa fa-details mr-1"></i> View Users</a>
+      <button ng-click = "adminCtrl.logout()" class="btn btn-outline-white"><i class="fa fa-details mr-1"></i> Logout</button>
+
+      <div ng-show="adminCtrl.edit_test" class="col-sm-12" style="background-color: #222; padding: 2%;">
+
+        <form name="testForm" ng-submit="adminCtrl.updateTest(testForm, adminCtrl.test._id)" novalidate>
+          <p class="h4 white-text text-center mb-4">Edit test</p>
+
+          <div class="form-group">
+            <label class="white-text">Test title:</label>
+            <input name="title" ng-model = adminCtrl.test.title type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+            <p ng-show="testForm.title.$invalid && testForm.title.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> title is required.</p>
+          </div> 
+
+          <div class="form-group">
+            <label class="white-text" for="materialFormLoginEmailEx">Time limit in sec:</label>
+            <input name="allowed_time"  required="" ng-model = adminCtrl.test.allowed_time type="number" id="materialFormLoginEmailEx" class="form-control">
+            <p ng-show="testForm.allowed_time.$invalid && testForm.allowed_time.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> time limit is required.</p>
+          </div>
+
+          <div class="text-center mt-4">
+            <button ng-disabled = "adminCtrl.loading" class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+
+          <div class="text-center mt-4">
+            <div class="loader" ng-show="adminCtrl.loading"></div>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Test title</th>
+              <th>Time limit</th>
+              <th>Questions</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="test in adminCtrl.tests">
+              <th>{{test.title}}</th>
+              <td>{{test.allowed_time + ' sec'}}</td>
+              <td><a href="#!/admin/questions-list/{{test._id}}"><i class="fa fa-info-circle"></i></a></td>
+              <td><a href="" ng-click = "adminCtrl.editTest(test._id)"><i class="fa fa-edit"></i></a></td>
+              <td><a href="" ng-click = "adminCtrl.deleteTest(test._id)"><i class="fa fa-remove"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="row" ng-controller = "AdminQuestionListController as adminqlCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;" ng-init = "adminqlCtrl.getQuestions()">
+
+      <div ng-show="adminCtrl.loadingfull" class="animationload">
+        <div class="osahanloading">
+        </div>
+      </div>
+
+      <form ng-if="adminqlCtrl.edit_question" name="questionForm" ng-submit="adminqlCtrl.updateQuestion(questionForm, adminqlCtrl.question._id)" novalidate>
+        <p class="h4 white-text text-center mb-4">Edit question</p>
+
+        <div class="form-group" ng-init="adminqlCtrl.getTests()">
+          <label class="white-text" for="exampleFormControlSelect1">Choose test</label>
+          <select name="test" ng-model="adminqlCtrl.question.test" ng-options='test._id as test.title for test in adminqlCtrl.tests' class="form-control" id="exampleFormControlSelect1" required="">
+            <option value="" >choose test</option>
+          </select>
+          <p ng-show="questionForm.test.$invalid && questionForm.test.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> test is required.</p>
+        </div>
+
+        <div class="md-form">
+          <textarea name="question" ng-model="adminqlCtrl.question.question" ui-tinymce required=""></textarea>
+          <p ng-show="questionForm.question.$invalid && questionForm.question.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> question is required.</p>
+        </div>
+
+        <label class="white-text" for="exampleFormControlSelect1">Fill the choices</label>
+        <div class="md-form">
+          <p class="white-text">Option A</p>
+          <input name="A" ng-model=" adminqlCtrl.question.choices.A" type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+          <p ng-show="questionForm.A.$invalid && questionForm.A.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> choice A is required.</p>
+        </div> 
+        <div class="md-form">
+          <p class="white-text">Option B</p>
+          <input name="B" ng-model=" adminqlCtrl.question.choices.B" type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+          <p ng-show="questionForm.B.$invalid && questionForm.B.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> choice B is required.</p>
+        </div> 
+        <div class="md-form">
+          <p class="white-text">Option C</p>  
+          <input name="C" ng-model=" adminqlCtrl.question.choices.C" type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+          <p ng-show="questionForm.C.$invalid && questionForm.C.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> choice C is required.</p>
+        </div> 
+        <div class="md-form">
+          <p class="white-text">Option D</p>
+          <input name="D" ng-model=" adminqlCtrl.question.choices.D" type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+          <p ng-show="questionForm.D.$invalid && questionForm.D.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> choice D is required.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="white-text" for="exampleFormControlSelect1">Choose correct answer</label>
+          <select name="answer" ng-model="adminqlCtrl.question.answer" class="form-control" id="exampleFormControlSelect1" required="">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+          </select>
+          <p ng-show="questionForm.answer.$invalid && questionForm.answer.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> answer is required.</p>
+        </div>
+
+        <div class="text-center mt-4">
+          <button ng-disabled = "adminqlCtrl.loading" class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+
+        <div class="text-center mt-4">
+          <div class="loader" ng-show="adminqlCtrl.loading"></div>
+        </div>
+
+      </form>
+      <div class="table-responsive">
+      <h3 class="text-center white-text">Questions</h3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Options</th>
+            <th>Answer</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="question in adminqlCtrl.questions">
+            <td ng-bind-html="question.question"></td>
+            <td>{{'A='+question.choices.A+', '+'B='+question.choices.B+', '+'C='+question.choices.C+', '+'D='+question.choices.D}}</td>
+            <td>{{question.answer}}</td>
+            <td><a href="" ng-click="adminqlCtrl.editQuestion(question._id)"><i class="fa fa-edit"></i></a></td>
+            <td><a href="" ng-click = "adminqlCtrl.deleteQuestion(question._id)"><i class="fa fa-remove"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="text-center">
+        <button back class="btn btn-outline-danger">Back</button>
+      </div>
+    </div>
+  </div>
+</div>

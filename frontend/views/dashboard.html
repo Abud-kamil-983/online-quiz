@@ -1,0 +1,112 @@
+<div class="row" ng-controller="DashboardController as dsCtrl">
+    <div class="col-sm-12">
+        <div class="jumbotron" style="height: 100%;">
+
+            <h3 class="mb-1 white-text text-center">Welcome {{dsCtrl.user.fullName}}!</h3>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <a href="#!/dashboard/tests-list" class=" btn btn-outline-yellow waves-effect"><i class="fa fa-sign-in mr-1"></i>Take a test</a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <a ng-click="dsCtrl.logout()" class=" btn btn-outline-white waves-effect"><i class="fa fa-sign-out mr-1"></i>logout</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">playlist_add_check</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">AVERAGE SCORE</div>
+                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">{{dsCtrl.totalScore/dsCtrl.tests.length | number:2}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="info-box bg-cyan hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">format_list_numbered</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">TOTAL TESTS ATTEMPTED</div>
+                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">{{dsCtrl.tests.length}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="info-box bg-light-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">trending_up</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">SUCCESS PERCENTAGE</div>
+                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">{{(100*dsCtrl.totalScore/dsCtrl.totalQuestions) | number:2}}%</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>   
+
+            <h3 class="white-text mb-1" style="margin-top: 2%;">Your test details :</h3>
+            <div class="table-responsive" ng-show="dsCtrl.test_details">
+                <table class="table table-hover w-auto">
+                    <thead>
+                        <tr>
+                            <th>Test</th>
+                            <th>{{dsCtrl.score[0].test.title}}</th>
+                        </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th am-time-ago="dsCtrl.score[0].date"></th>
+                        </tr>
+                        <tr>
+                            <th>Total Questions</th>
+                            <th>{{dsCtrl.score[0].totalQuestions}}</th>
+                        </tr>
+                        <tr>
+                            <th>Total Questions Attempted</th>
+                            <th>{{dsCtrl.score[0].score + dsCtrl.score[0].wrong}}</th>
+                        </tr>
+                        <tr >
+                            <th>Correct</th>
+                            <th>{{dsCtrl.score[0].score}}</th>
+                        </tr>
+                        <tr>
+                            <th>Incorrect</th>
+                            <th>{{dsCtrl.score[0].wrong}}</th>
+                        </tr>
+                        <tr>
+                            <th>Total Score</th>
+                            <th>{{dsCtrl.score[0].score}}</th>
+                        </tr>
+                    </thead>
+                </table>
+                <button class="btn btn-outline-yellow text-center" ng-click = "dsCtrl.goBack()">Back</button>       
+            </div>
+            
+            <div class="table-responsive">
+                <table ng-hide="dsCtrl.test_details" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Test</th>
+                            <th>Date</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="test in dsCtrl.tests">
+                            <th>{{test.test.title}}</th>
+                            <th am-time-ago="test.date"></th>
+                            <th><a class="btn btn-outline-yellow btn-sm" ng-click="dsCtrl.showTestDetails(test._id)">details</a></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

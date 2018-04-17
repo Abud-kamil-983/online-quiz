@@ -1,0 +1,32 @@
+<div class="row" ng-controller="ResetController as rsCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;">
+
+      <form name="resetForm" ng-submit = "rsCtrl.submitResetForm(resetForm)" novalidate>
+        <p class="h3 white-text text-center mb-4">Set Up New Password</p>
+
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input name="password" ng-model = "rsCtrl.reset.password" type="password" id="materialFormLoginEmailEx" class="form-control" required="">
+          <label for="materialFormLoginEmailEx">Your new password <strong class="saffText">*</strong></label>
+          <p ng-show="resetForm.email.$invalid && resetForm.email.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> password required.</p>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input compare-to="rsCtrl.reset.password" required="" name="repassword" ng-model = "rsCtrl.signup.repassword" type="password" id="materialFormLoginPasswordEx" class="form-control">
+          <label for="materialFormLoginPasswordEx">Re Password <strong class="saffText">*</strong></label>
+          <p ng-show="resetForm.repassword.$invalid && !resetForm.repassword.$pristine" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2">Must match the previous entry.</p>
+        </div>
+
+        <div class="text-center mt-4">
+          <input ng-disabled = "rsCtrl.loading" class="btn btn-lg btn-outline-white" type="submit">
+        </div>
+        
+        <div class="text-center mt-4">
+          <div class="loader" ng-show="rsCtrl.loading"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

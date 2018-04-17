@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app = "quizApp">
+<head>
+
+  <link rel="stylesheet" href="bower_components/angular-confirm/dist/angular-confirm.min.css">
+  <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.css">
+  <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.buttons.css">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pnotify.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body class="body-color" > 
+  <div class="container" ng-view>
+
+  </div>  
+  <!--JavaScript at end of body for optimized loading-->  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/js/mdb.min.js"></script>
+  <script type="text/javascript" src="bower_components/tinymce/tinymce.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+  <script type="text/javascript" src="bower_components/angular-confirm/dist/angular-confirm.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js" type="text/javascript"></script>
+  <script src="bower_components/pnotify/dist/pnotify.js"></script>
+  <script src="bower_components/pnotify/dist/pnotify.confirm.js"></script>
+  <script src="bower_components/pnotify/dist/pnotify.buttons.js"></script>
+  <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.9/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.2.0/angular-moment.min.js"></script>
+  <script type="text/javascript" src="app/app.js"></script>
+  <script type="text/javascript" src="routes/route.js"></script>
+  <script src="bower_components/angular-pnotify/src/angular-pnotify.js"></script>
+  <script type="text/javascript" src="directives/back.js"></script>
+  <script type="text/javascript" src="directives/passverify.js"></script>
+  <script type="text/javascript" src="services/auth-services.js"></script>
+  <script type="text/javascript" src="services/pnotify-service.js"></script>
+  <script type="text/javascript" src="services/request-service.js"></script>
+  <script type="text/javascript" src="services/socket.js"></script>
+  <script type="text/javascript" src="services/baseUrl-service.js"></script>
+  <script type="text/javascript" src="controllers/LoginController.js"></script>
+  <script type="text/javascript" src="controllers/SignupController.js"></script>
+  <script type="text/javascript" src="controllers/AdminController.js"></script>
+  <script type="text/javascript" src="controllers/AdminPanelController.js"></script>
+  <script type="text/javascript" src="controllers/AdminTestController.js"></script>
+  <script type="text/javascript" src="controllers/ForgotController.js"></script>
+  <script type="text/javascript" src="controllers/ResetController.js"></script>
+  <script type="text/javascript" src="controllers/GoogleController.js"></script>
+  <script type="text/javascript" src="controllers/DashboardController.js"></script>
+  <script type="text/javascript" src="controllers/AdminQuestionController.js"></script>
+  <script type="text/javascript" src="controllers/AdminQuestionListController.js"></script>
+  <script type="text/javascript" src="controllers/AdminUserController.js"></script>
+  <script type="text/javascript" src="controllers/DashboardTestController.js"></script>
+ 
+</body>
+</html>

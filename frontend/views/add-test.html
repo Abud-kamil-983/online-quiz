@@ -1,0 +1,35 @@
+<div class="row" ng-controller="AdminTestController as addtCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;">
+
+      <form name="testForm" ng-submit="addtCtrl.submitTest(testForm)" novalidate>
+
+        <p class="h4 white-text text-center mb-4">Add test</p>
+        <div class="md-form">
+          <input name="title" ng-model = addtCtrl.test.title type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+          <p ng-show="testForm.title.$invalid && testForm.title.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> title is required.</p>
+          <label for="materialFormLoginEmailEx">Test title</label>
+        </div> 
+
+        <div class="md-form">
+          <input required="" name="allowed_time" ng-model = addtCtrl.test.allowed_time type="number" id="materialFormLoginEmailEx" class="form-control">
+          <p ng-show="testForm.allowed_time.$invalid && testForm.allowed_time.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> time limit is required.</p>
+          <label for="materialFormLoginEmailEx">Time limit in sec</label>
+        </div> 
+
+        <div class="text-center mt-4">
+          <button ng-disabled = "addtCtrl.loading" class="btn btn-outline-info" type="submit">Add</button>
+        </div>
+
+        <div class="text-center mt-4">
+          <div class="loader" ng-show="addtCtrl.loading"></div>
+        </div>
+
+      </form>
+      <div class="text-center mt-4">
+        <button back class="btn btn-outline-danger">Cancel</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="row" ng-controller="SignupController as signupCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;">
+
+      <form name="signupForm" ng-submit="signupCtrl.submitSignupForm(signupForm)" novalidate>
+        <p class="h3 text-center white-text mb-4">Create Your Account Here</p>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input required="" name="name" ng-model = "signupCtrl.signup.fullName" type="text" id="materialFormLoginEmailEx" class="form-control">
+          <label for="materialFormLoginEmailEx">Full Name <strong class="saffText">*</strong></label>
+          <p ng-show="signupForm.name.$invalid && signupForm.name.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> Full Name is required.</p>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input required="" name="email" ng-model = "signupCtrl.signup.email" type="email" id="materialFormLoginEmailEx" class="form-control">
+          <label for="materialFormLoginEmailEx">Email <strong class="saffText">*</strong></label>
+          <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> Email must be valid.</p>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-mobile prefix grey-text"></i>
+          <input required="" name="mobile" ng-model = "signupCtrl.signup.mobile" type="text" id="materialFormLoginEmailEx" class="form-control">
+          <label for="materialFormLoginEmailEx">Mobile <strong class="saffText">*</strong></label>
+          <p ng-show="signupForm.mobile.$invalid && signupForm.mobile.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> Mobile is required.</p>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input required="" name="password" ng-model = "signupCtrl.signup.password" type="password" id="materialFormLoginEmailEx" class="form-control">
+          <label for="materialFormLoginEmailEx">Password <strong class="saffText">*</strong></label>
+          <p ng-show="signupForm.password.$invalid && signupForm.password.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> Password is required.</p>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input compare-to="signupCtrl.signup.password" required="" name="repassword" ng-model = "signupCtrl.signup.repassword" type="password" id="materialFormLoginPasswordEx" class="form-control">
+          <label for="materialFormLoginPasswordEx">Re Password <strong class="saffText">*</strong></label>
+          <p ng-show="signupForm.repassword.$invalid && !signupForm.repassword.$pristine" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2">Must match the previous entry.</p>
+        </div>
+
+        <div class="text-center mt-4">
+          <input ng-disabled="signupCtrl.loading" class="btn btn-outline-yellow" type="submit">
+        </div>
+
+        <div class="text-center mt-4">
+          <div class="loader" ng-show="signupCtrl.loading"></div>
+        </div>
+      </form>
+      
+      <div class="text-center mt-4">
+        <button back class="btn btn-outline-danger">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+

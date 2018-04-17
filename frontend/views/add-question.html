@@ -1,0 +1,74 @@
+<div class="row" ng-controller="AdminQuestionController as addqCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;">
+
+      <form name="questionForm" ng-submit="addqCtrl.submitQuestion(questionForm)" novalidate>
+
+        <p class="h4 white-text text-center mb-4">Add question</p>
+        <div class="form-group" ng-init="addqCtrl.getTests()">
+          <label class="white-text" for="exampleFormControlSelect1">Choose test:</label>
+          <select name="test" ng-model="addqCtrl.question.test" ng-options='test._id as test.title for test in addqCtrl.tests' class="form-control" id="exampleFormControlSelect1" required="">
+            <option value="" >choose test</option>
+          </select>
+          <p ng-show="questionForm.test.$invalid && questionForm.test.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> test is required.</p>
+        </div>
+
+        <p class="white-text" for="exampleFormControlSelect1">Question:</p>
+        <div class="md-form">
+          <textarea name="question" ng-model="addqCtrl.question.question" ui-tinymce required=""></textarea>
+          <p ng-show="questionForm.question.$invalid && questionForm.question.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> question is required.</p>
+        </div>
+
+        <label class="white-text" for="exampleFormControlSelect1">Fill the choices:</label>
+        <div class="md-form">
+          <input name="A" ng-model=" addqCtrl.question.choice.A" type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+          <p ng-show="questionForm.A.$invalid && questionForm.A.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> choice A is required.</p>
+          <label for="materialFormLoginEmailEx">Option A</label>
+        </div>
+
+        <div class="md-form">
+          <input name="B" ng-model=" addqCtrl.question.choice.B" type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+          <p ng-show="questionForm.B.$invalid && questionForm.B.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> choice B is required.</p>
+          <label for="materialFormLoginEmailEx">Option B</label>
+        </div> 
+
+        <div class="md-form">
+          <input name="C" ng-model=" addqCtrl.question.choice.C" type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+          <p ng-show="questionForm.C.$invalid && questionForm.C.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> choice C is required.</p>
+          <label for="materialFormLoginEmailEx">Option C</label>
+        </div> 
+
+        <div class="md-form">
+          <input name="D" ng-model=" addqCtrl.question.choice.D" type="text" id="materialFormLoginEmailEx" class="form-control" required="">
+          <p ng-show="questionForm.D.$invalid && questionForm.D.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> choice D is required.</p>
+          <label for="materialFormLoginEmailEx">Option D</label>
+        </div>
+
+        <div class="form-group">
+          <label class="white-text" for="exampleFormControlSelect1">Choose correct answer:</label>
+          <select name="answer" ng-model="addqCtrl.question.answer" class="form-control" id="exampleFormControlSelect1" required="">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+          </select>
+          <p ng-show="questionForm.answer.$invalid && questionForm.answer.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> answer is required.</p>
+        </div>
+
+        <div class="text-center mt-4">
+          <button ng-disabled = "addqCtrl.loading" class="btn btn-outline-info" type="submit">Add</button>
+        </div>
+
+        <div class="text-center mt-4">
+          <div class="loader" ng-show="addqCtrl.loading"></div>
+        </div>
+
+      </form>
+
+      <div class="text-center mt-4">
+        <button back class="btn btn-outline-danger">Cancel</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

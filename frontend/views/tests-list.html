@@ -1,0 +1,62 @@
+<div class="row" ng-controller="DashboardTestController as dtCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;" ng-init="dtCtrl.getTests()">
+      <div class="row">
+        <div  class="quiz-area text-white col-sm-12" ng-show=" dtCtrl.inProgress">
+
+          <div ng-show="!dtCtrl.quizOver">
+            <div>
+              <h1 class="tennis-text">Time: {{dtCtrl.startCount}}</h1>
+            </div>
+            <div>
+              <h2 class=" text-center mb-1" ng-bind-html="dtCtrl.question"></h2>
+            </div>
+
+            <div class="form-check" ng-repeat="option in dtCtrl.options">
+              <label class="element-animation1 btn btn-outline-white btn-lg btn-block form-check-label" >
+                <input ng-model = "dtCtrl.givenAnswers" class="form-check-input with-gap"  name="option" value="{{option}}" type="radio" autocomplete="off"> <label>{{option}}</label>
+              </label>
+            </div>
+
+            <div class="text-center mt-4">
+              <button class="btn btn-success text-center" ng-click="dtCtrl.checkAnswer()" ng-show="dtCtrl.answerMode">Submit</button>
+            </div>
+
+            <div ng-show="!dtCtrl.answerMode" class="text-center">
+              <button class="btn btn-success" ng-click="dtCtrl.nextQuestion()">Next</button>
+              <span ng-show="dtCtrl.correctAns">That is correct!</span>
+              <span ng-show="!dtCtrl.correctAns">Sorry, that is an incorrect answer.</span>
+            </div>
+          </div>
+
+          <div ng-show="dtCtrl.quizOver" class="text-center">
+            <h2 class="font-small d-flex justify-content-center mb-3 pt-2">Quiz is over</h2>
+            <div class="text-center mt-4">
+              <a ng-click="dtCtrl.playAgain()" class="btn btn-success text-center">Play again</a>
+              <a href="#!/dashboard" class="btn btn-success text-center">Go to dashboard</a>
+            </div>
+          </div>
+
+          <div class="text-center" id="score">
+            <h2 class="font-small d-flex justify-content-center mb-3 pt-2">Score: {{dtCtrl.score}}</h2>
+            <h2 class="font-small d-flex justify-content-center mb-3 pt-2">Wrong: {{dtCtrl.wrongAnswers}}</h2>
+            <h2 class="font-small d-flex justify-content-center mb-3 pt-2">Percentage: {{dtCtrl.score/dtCtrl.totalQuestions*100 |number:2}}%</h2>
+          </div>
+        </div>
+        
+        <div ng-hide=" dtCtrl.inProgress" class="col-sm-4" ng-repeat = "test in dtCtrl.tests">
+          <div class="card card-image" style="background-color: black!important; margin: 5%;">
+            <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+              <div>
+                <h3 class="card-title pt-2"><strong>{{test.title}}</strong></h3>
+                <p>Time limit:  {{test.allowed_time + ' sec'}}</p>
+                <button class="btn btn-outline-info" ng-click = "dtCtrl.openModal(test)"> Start the test <i class="fa fa-angle-double-right" style="font-size:20px"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
