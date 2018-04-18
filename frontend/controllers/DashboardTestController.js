@@ -13,6 +13,7 @@ myApp.controller('DashboardTestController',['Auth', 'socket', '$timeout', '$ngCo
 	// initializing the correct and wrong answer variable
 	this.score = 0;
 	this.wrongAnswers = 0;
+	this.answerTime = 0;
 	//getting all the test
 	this.getTests = function(){
 		requestService.getData(urlService.baseUrl+'test/get-tests?token='+token).then(function successCallback(response){
@@ -54,6 +55,7 @@ myApp.controller('DashboardTestController',['Auth', 'socket', '$timeout', '$ngCo
 	this.getQuestions = function(test){
 		requestService.getData(urlService.baseUrl+'admin/get-questions/'+test+'?token='+token).then(function successCallback(response){
               console.log(response.data); 
+              main.startTime =  Date.now();
               var q = response.data[main.id];
               console.log(q);
 				if(q) {
@@ -78,6 +80,8 @@ myApp.controller('DashboardTestController',['Auth', 'socket', '$timeout', '$ngCo
 			return false;
 		}
 
+		main.endTime =  Date.now();
+
 		if(main.givenAnswers == main.options[main.answer]) {
 			//if answer true increase score
 			main.score++;
@@ -87,7 +91,7 @@ myApp.controller('DashboardTestController',['Auth', 'socket', '$timeout', '$ngCo
 			main.wrongAnswers++;
 			main.correctAns = false;
 		}
-
+		main.answerTime = (main.endTime-main.startTime)/1000;
 		// firing event on each time answer is submitted
 		socket.emit('updateScore', {
 				test_id:main.test_id,
@@ -96,6 +100,7 @@ myApp.controller('DashboardTestController',['Auth', 'socket', '$timeout', '$ngCo
 		});
 
 		main.answerMode = false;
+
 	};
 
 	//starting quiz function
@@ -134,6 +139,8 @@ myApp.controller('DashboardTestController',['Auth', 'socket', '$timeout', '$ngCo
 	this.nextQuestion = function() {
 		main.id++;
 		main.getQuestions(main.test);
+		main.answerTime = 0;
+
 	};
 
 	this.playAgain = function(){

@@ -202,7 +202,9 @@ select {
 .modal { 
   display: block;
 }
-
+.btn-block{
+    width: 50% !important;
+}
 /* Custom dialog/modal headers */
 
 .dialog-header-error { background-color: #d2322d; }
@@ -218,7 +220,7 @@ select {
 .pad { padding: 25px; }
 
 .form-check{
-  margin: 5%;
+  margin: 0 auto 1.5%;
 }
 
 input[type=radio] {
@@ -644,4 +646,8 @@ label .glyphicon {
 }
 .bg-orange .content .text, .bg-orange .content .number {
     color: #fff !important;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }

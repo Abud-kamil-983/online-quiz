@@ -5,7 +5,7 @@ var User = mongoose.model('User');
 var jwt = require('jsonwebtoken');
 
 module.exports = function(app, passport){
-
+    var token = '';
 	app.use(passport.initialize());
 	app.use(passport.session());
 
@@ -30,11 +30,13 @@ module.exports = function(app, passport){
     },
     function(accessToken, refreshToken, profile, done) {
           // try to find the user based on their google id
+          setTimeout(function() {
             User.find({ 'email' : profile.emails[0].value }, function(err, user) {
                 if (err)
                     return done(err);
 
                 if (user.length>0) {
+                    token = jwt.sign({ email: user[0].email, fullName: user[0].fullName, _id: user[0]._id}, 'mysecret', {expiresIn : 86400});
                     // if a user is found, log them in
                     return done(null, user);
                 } else {
@@ -45,13 +47,15 @@ module.exports = function(app, passport){
                     newUser.email = profile.emails[0].value; // pull the first email
 
                     // save the user
-                    newUser.save(function(err) {
+                    newUser.save(function(err, savedUser) {
                         if (err)
                             throw err;
-                        return done(null, newUser);
+                        token = jwt.sign({ email: savedUser.email, fullName: savedUser.fullName, _id: savedUser._id}, 'mysecret', {expiresIn : 86400});
+                        return done(null, savedUser);
                     });
                 }
             });
+        }, 1000);
     }
     ));
 

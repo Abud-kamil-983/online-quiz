@@ -26,4 +26,9 @@ myApp.controller('SignupController',[ '$http', '$q', 'pnotifyService','$location
               pnotifyService.error('Error', response.data.message.message);
         });
 	}
+
+  this.googleLogin = function(){
+    window.location = "http://ec2-18-188-99-165.us-east-2.compute.amazonaws.com/auth/google/";
+  }
+
 }]);

@@ -14,12 +14,8 @@
 
             <div class="form-check" ng-repeat="option in dtCtrl.options">
               <label class="element-animation1 btn btn-outline-white btn-lg btn-block form-check-label" >
-                <input ng-model = "dtCtrl.givenAnswers" class="form-check-input with-gap"  name="option" value="{{option}}" type="radio" autocomplete="off"> <label>{{option}}</label>
+                <input ng-change="dtCtrl.checkAnswer()" ng-model = "dtCtrl.givenAnswers" class="form-check-input with-gap"  name="option" value="{{option}}" type="radio" autocomplete="off"> <label>{{option}}</label>
               </label>
-            </div>
-
-            <div class="text-center mt-4">
-              <button class="btn btn-success text-center" ng-click="dtCtrl.checkAnswer()" ng-show="dtCtrl.answerMode">Submit</button>
             </div>
 
             <div ng-show="!dtCtrl.answerMode" class="text-center">
@@ -38,9 +34,8 @@
           </div>
 
           <div class="text-center" id="score">
-            <h2 class="font-small d-flex justify-content-center mb-3 pt-2">Score: {{dtCtrl.score}}</h2>
-            <h2 class="font-small d-flex justify-content-center mb-3 pt-2">Wrong: {{dtCtrl.wrongAnswers}}</h2>
-            <h2 class="font-small d-flex justify-content-center mb-3 pt-2">Percentage: {{dtCtrl.score/dtCtrl.totalQuestions*100 |number:2}}%</h2>
+            <h2 class="font-small d-flex justify-content-center mb-3 pt-2">Score: {{dtCtrl.score}}    | Wrong: {{dtCtrl.wrongAnswers}} </h2>
+            <h2 class="font-small d-flex justify-content-center mb-3 pt-2">Percentage: {{dtCtrl.score/dtCtrl.totalQuestions*100 |number:2}}%   | Time taken: {{dtCtrl.answerTime | number:0}} secs</h2>
           </div>
         </div>
         
