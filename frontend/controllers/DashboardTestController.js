@@ -32,7 +32,7 @@ myApp.controller('DashboardTestController',['Auth', 'socket', '$timeout', '$ngCo
 				closeIcon: true,
 				useBootstrap: false,
 				title: 'instructions',
-				content: `You have ${test.allowed_time} seconds to answer the ${totalQuestions} questions, after times up, your previous answer will be saved and window will get closed.`,
+				content: `You have ${test.allowed_time} seconds to answer the ${totalQuestions} questions, after times up, your previous answer will be saved and window will get closed.The option text must changed to green color after you select( click outside of text)`,
 				theme: 'dark',
 				buttons: {
 					start: function(){
